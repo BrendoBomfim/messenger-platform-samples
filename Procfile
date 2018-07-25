@@ -1,1 +1,1 @@
-web: node quick-start/app.js
+web: node app.js
