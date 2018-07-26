@@ -57,7 +57,6 @@ app.post('/webhook', (req, res) => {
       if (webhook_event.message) {
         handleMessage(sender_psid, webhook_event.message);        
       } else if (webhook_event.postback) {
-        
         handlePostback(sender_psid, webhook_event.postback);
       }
       
@@ -107,8 +106,9 @@ function handleMessage(sender_psid, received_message) {
   if (received_message.text) {    
     // Create the payload for a basic text message, which
     // will be added to the body of our request to the Send API
+    console.log(received_message.text);
     response = {
-      "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
+      "text": `Você enviou a seguinte mensagem: "${received_message.text}". Agora tente me enviar um anexo!`
     }
   } else if (received_message.attachments) {
     // Get the URL of the message attachment
@@ -119,18 +119,18 @@ function handleMessage(sender_psid, received_message) {
         "payload": {
           "template_type": "generic",
           "elements": [{
-            "title": "Is this the right picture?",
-            "subtitle": "Tap a button to answer.",
+            "title": "Essa imagem é do galo cego?",
+            "subtitle": "Clique em um botão de resposta.",
             "image_url": attachment_url,
             "buttons": [
               {
                 "type": "postback",
-                "title": "Yes!",
+                "title": "Sim!",
                 "payload": "yes",
               },
               {
                 "type": "postback",
-                "title": "No!",
+                "title": "Não!",
                 "payload": "no",
               }
             ],
@@ -152,9 +152,22 @@ function handlePostback(sender_psid, received_postback) {
 
   // Set the response based on the postback payload
   if (payload === 'yes') {
-    response = { "text": "Thanks!" }
+    response = { "text": "Obrigado Fortaleza!" }
   } else if (payload === 'no') {
-    response = { "text": "Oops, try sending another image." }
+    response = {
+      "attachment": {
+      "type": "template",
+      "payload": {
+         "template_type": "media",
+         "elements": [
+            {
+               "media_type": "<image|video>",
+               "url": "<FACEBOOK_URL>"
+            }
+         ]
+      }
+    }
+    }
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
