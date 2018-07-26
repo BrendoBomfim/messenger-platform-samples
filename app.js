@@ -46,6 +46,7 @@ app.post('/webhook', (req, res) => {
         handleMessage(sender_psid, webhook_event.message);
       } else if (webhook_event.postback) {
         handlePostback(sender_psid, webhook_event.postback);
+        afterPostback(sender_psid, webhook_event.postback);
       }
 
     });
@@ -100,7 +101,7 @@ function handleMessage(sender_psid, received_message) {
     }
   } else if (received_message.attachments) {
     // Get the URL of the message attachment
-    let attachment_url = "https://vignette.wikia.nocookie.net/meme/images/f/f4/Galo_Cego.jpg/revision/latest?cb=20170128222653&path-prefix=pt-br";
+    let attachment_url = received_message.attachments[0].payload.url;
     console.log(attachment_url);
     response = {
       "attachment": {
@@ -143,7 +144,23 @@ function handlePostback(sender_psid, received_postback) {
   if (payload === 'yes') {
     response = { "text": "Obrigado Fortaleza!" }
   } else if (payload === 'no') {
-    response = {
+    response = { "text": "Apois mande do galo cego então..." }
+  }
+
+
+  // Send the message to acknowledge the postback
+  callSendAPI(sender_psid, response);
+}
+
+function afterPostback(sender_psid, received_postback) {
+  console.log('sending the after')
+  let response;
+  // Get the payload for the postback
+  let payload = received_postback.payload;
+
+  // Set the response based on the postback payload
+  if (payload === 'yes') {
+    response = { 
       "attachment": {
         "type": "template",
         "payload": {
@@ -153,7 +170,9 @@ function handlePostback(sender_psid, received_postback) {
           }]
         }
       } 
-    }
+    } 
+  } else if (payload === 'no') {
+    response = { "text": "Apois mande do galo cego então..." }
   }
 
 
