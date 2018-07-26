@@ -149,8 +149,8 @@ function handlePostback(sender_psid, received_postback) {
           "template_type": "media",
           "elements": [
             {
-              "media_type": "gif",
-              "url": "https://media.giphy.com/media/npLbVZHLR0F13i7Y8r/giphy.gif"
+              "media_type": "video",
+              "url": "https://media.giphy.com/media/npLbVZHLR0F13i7Y8r/giphy.mp4"
             }
           ]
         }
