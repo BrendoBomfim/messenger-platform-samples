@@ -100,7 +100,7 @@ function handleMessage(sender_psid, received_message) {
     }
   } else if (received_message.attachments) {
     // Get the URL of the message attachment
-    let attachment_url = received_message.attachments[0].payload.url;
+    let attachment_url = "https://vignette.wikia.nocookie.net/meme/images/f/f4/Galo_Cego.jpg/revision/latest?cb=20170128222653&path-prefix=pt-br";
     console.log(attachment_url);
     response = {
       "attachment": {
