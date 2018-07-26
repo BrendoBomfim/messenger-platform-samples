@@ -161,14 +161,19 @@ function afterPostback(sender_psid, received_postback) {
   // Set the response based on the postback payload
   if (payload === 'yes') {
     response = { 
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": [{
-            "image_url": "https://vignette.wikia.nocookie.net/meme/images/f/f4/Galo_Cego.jpg/revision/latest?cb=20170128222653&path-prefix=pt-br"
-          }]
-        }
+      "message":{
+        "attachment": {
+          "type": "template",
+          "payload": {
+             "template_type": "media",
+             "elements": [
+                {
+                   "media_type": "image",
+                   "url": "https://vignette.wikia.nocookie.net/meme/images/f/f4/Galo_Cego.jpg/revision/latest?cb=20170128222653&path-prefix=pt-br"
+                }
+             ]
+          }
+        }    
       } 
     } 
   } else if (payload === 'no') {
