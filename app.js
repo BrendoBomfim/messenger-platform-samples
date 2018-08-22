@@ -95,19 +95,15 @@ function afterPostback(sender_psid, received_postback) {
     response = {
       "message": {
         "attachment": {
-          "type": "template",
+          "type": "image",
           "payload": {
-            "template_type": "media",
-            "elements": [
-              {
-                "media_type": "image",
-                "url": "https://vignette.wikia.nocookie.net/meme/images/f/f4/Galo_Cego.jpg/revision/latest?cb=20170128222653&path-prefix=pt-br"
-              }
-            ]
+            "url": "https://vignette.wikia.nocookie.net/meme/images/f/f4/Galo_Cego.jpg/revision/latest?cb=20170128222653&path-prefix=pt-br",
+            "is_reusable":true     
+          } 
           }
         }
       }
-    }
+    
   } else if (payload === 'no') {
     response = { "text": "Apois mande do galo cego então..." }
   }
