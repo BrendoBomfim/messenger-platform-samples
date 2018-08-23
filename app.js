@@ -66,17 +66,17 @@ function handleMessage(sender_psid, received_message) {
 }
 
 function upload(sender_psid){
-  let response = {
-    "message": {
+  let response;
+    response = {
       "attachment": {
         "type": "image",
         "payload": {
           "url": "https://vignette.wikia.nocookie.net/meme/images/f/f4/Galo_Cego.jpg/revision/latest?cb=20170128222653&path-prefix=pt-br",
           "is_reusable":false     
-        } 
-        }
+                  }  
+              }
       }
-    }
+    
     callSendAPI(sender_psid, response);
 }
 
@@ -141,6 +141,7 @@ function callSendAPI(sender_psid, response) {
     "json": request_body
   }, (err, res, body) => {
     if (!err) {
+      console.log(request_body)
       console.log('message sent!')
     } else {
       console.error("Unable to send message:" + err);
