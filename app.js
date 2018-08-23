@@ -56,13 +56,28 @@ function handleMessage(sender_psid, received_message) {
 
   if (received_message.text) {
     console.log(received_message.text);
-
   } else if (received_message.attachments) {
     let attachment_url = received_message.attachments[0].payload.url;
     console.log(attachment_url);
     download(attachment_url);
-    
   }
+  upload(sender_psid);
+
+}
+
+function upload(sender_psid){
+  response = {
+    "message": {
+      "attachment": {
+        "type": "image",
+        "payload": {
+          "url": "https://vignette.wikia.nocookie.net/meme/images/f/f4/Galo_Cego.jpg/revision/latest?cb=20170128222653&path-prefix=pt-br",
+          "is_reusable":false     
+        } 
+        }
+      }
+    }
+    callSendAPI(sender_psid, response);
 }
 
 function handlePostback(sender_psid, received_postback) {
