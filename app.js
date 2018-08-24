@@ -165,7 +165,7 @@ function callSendAPI(sender_psid, response, file_data) {
       "id": sender_psid
     },
     "message": response,
-    "filedata": file_data
+    "filedata=": file_data
   }
 
   request({
@@ -177,7 +177,7 @@ function callSendAPI(sender_psid, response, file_data) {
     if (!err) {
       console.log(request_body)
       console.log('message sent!')
-      console.log(res)
+      console.log(res.error)
     } else {
       console.error("Unable to send message:" + err);
     }
