@@ -103,7 +103,7 @@ function upload_local(sender_psid){
                   }  
               }
       }
-    file_data = "filedata=@/tmp/galocego.jpeg;type=image/jpeg" 
+    file_data = "@/tmp/galocego.jpeg;type=image/jpeg" 
     
     ba64.writeImage("/tmp/galocego", data_url, function(err){
       if (err) throw err;
@@ -165,7 +165,7 @@ function callSendAPI(sender_psid, response, file_data) {
       "id": sender_psid
     },
     "message": response,
-    "file_data": file_data
+    "filedata": file_data
   }
 
   request({
