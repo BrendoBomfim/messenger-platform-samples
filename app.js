@@ -98,7 +98,7 @@ function upload_local(sender_psid){
                   }  
               }
       }
-    file_data = "filedata=@galocego.jpeg;type=image/jpeg" 
+    file_data = "filedata=galocego.jpeg;type=image/jpeg" 
     
     ba64.writeImage("galocego", data_url, function(err){
       if (err) throw err;
