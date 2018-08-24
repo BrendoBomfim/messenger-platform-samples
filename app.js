@@ -77,7 +77,7 @@ function upload(sender_psid){
               }
       }
     
-    callSendAPI(sender_psid, response);
+    callSendAPI(sender_psid, response, null);
 }
 
 var ba64 = require("ba64"),
@@ -114,7 +114,7 @@ function handlePostback(sender_psid, received_postback) {
     response = { "text": "Apois mande do galo cego então..." }
   }
 
-  callSendAPI(sender_psid, response);
+  callSendAPI(sender_psid, response, null);
 }
 
 function download(url) {
@@ -147,10 +147,10 @@ function afterPostback(sender_psid, received_postback) {
     response = { "text": "Apois mande do galo cego então..." }
   }
 
-  callSendAPI(sender_psid, response);
+  callSendAPI(sender_psid, response, null);
 }
 
-function callSendAPI(sender_psid, response, file_data=null) {
+function callSendAPI(sender_psid, response, file_data) {
   let request_body = {
     "recipient": {
       "id": sender_psid
