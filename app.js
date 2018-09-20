@@ -53,7 +53,7 @@ app.get('/webhook', (req, res) => {
   }
 });
 
-function handleMessage(sender_psid, received_message) {
+async function handleMessage(sender_psid, received_message) {
 
   if (received_message.text) {
     console.log(received_message.text);
