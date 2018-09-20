@@ -106,9 +106,9 @@ function upload_local(sender_psid, data){
                   }  
               }
       }
-    file_data = "@/tmp/galocego.jpeg;type=image/jpeg" 
+    file_data = "@./tmp/galocego.jpeg;type=image/jpeg" 
     
-    ba64.writeImage("/tmp/galocego.jpeg", data_url, function(err){
+    ba64.writeImage("./tmp/galocego.jpeg", data_url, function(err){
       if (err) throw err;
       else{
         console.log("Image prepared to be send");
