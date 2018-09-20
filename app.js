@@ -60,7 +60,7 @@ function handleMessage(sender_psid, received_message) {
   } else if (received_message.attachments) {
     let attachment_url = received_message.attachments[0].payload.url;
     console.log(attachment_url);
-    let base64file = download(attachment_url);
+    let base64file = await download(attachment_url);
     console.log(base64file);
     upload_local(sender_psid, base64file);
   }
@@ -136,7 +136,6 @@ function download(url) {
   request.get(url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
         var data = "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
-        console.log(data);
         return data;
     }
   });
