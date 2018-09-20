@@ -61,6 +61,7 @@ function handleMessage(sender_psid, received_message) {
     let attachment_url = received_message.attachments[0].payload.url;
     console.log(attachment_url);
     let base64file = download(attachment_url);
+    console.log(base64file);
     upload_local(sender_psid, base64file);
   }
   
